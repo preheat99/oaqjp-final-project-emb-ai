@@ -4,7 +4,7 @@ from EmotionDetection.emotion_detection import emotion_detector
 
 app = Flask("Emotion Detector")
 
-@app.route("/emotionDetector")
+@app.route("/emotionDetector", methods=['POST'])
 def emote_detector():
     """ This method will GET the response based 
     on the user text input
@@ -21,7 +21,7 @@ def emote_detector():
 
     dominant_emotion = response['dominant_emotion']
     response = (
-    f"'anger': {anger}, 'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and "
+    f"For the given statement, the system response is 'anger': {anger}, 'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and "
     f"'sadness': {sadness}. "
     f"The dominant emotion is {dominant_emotion}."
 )
