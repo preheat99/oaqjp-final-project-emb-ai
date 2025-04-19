@@ -21,7 +21,8 @@ def emote_detector():
 
     dominant_emotion = response['dominant_emotion']
     response = (
-    f"For the given statement, the system response is 'anger': {anger}, 'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and "
+    f'''For the given statement, the system response is 'anger': {anger}, 
+        'disgust': {disgust}, 'fear': {fear}, 'joy': {joy} and '''
     f"'sadness': {sadness}. "
     f"The dominant emotion is {dominant_emotion}."
 )
