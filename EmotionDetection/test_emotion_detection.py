@@ -4,28 +4,35 @@ from emotion_detection import emotion_detector  # Import the function from your 
 class TestEmotionPredictor(unittest.TestCase):
 
     def test_joy_emotion(self):
-        test_text = "I feel so happy and full of energy today!"
+        test_text = "I am glad this happened"
         result = emotion_detector(test_text)
+        print(result)
         # Check if the joy emotion is present and greater than a certain threshold
-        self.assertGreater(float(result['joy'].replace('%', '')), 0)
-
-    def test_sadness_emotion(self):
-        test_text = "I am feeling really down and depressed."
-        result = emotion_detector(test_text)
-        # Check if the sadness emotion is present and greater than a certain threshold
-        self.assertGreater(float(result['sadness'].replace('%', '')), 0)
+        self.assertEqual(result['dominant_emotion'], 'joy')
 
     def test_anger_emotion(self):
-        test_text = "I am so angry right now!"
+        test_text = "I am really mad about this"
+        result = emotion_detector(test_text)
+        # Check if the sadness emotion is present and greater than a certain threshold
+        self.assertEqual(result['dominant_emotion'], 'anger')
+
+    def test_disgust_emotion(self):
+        test_text = "I feel disgusted just hearing about this"
         result = emotion_detector(test_text)
         # Check if the anger emotion is present and greater than a certain threshold
-        self.assertGreater(float(result['anger'].replace('%', '')), 0)
+        self.assertEqual(result['dominant_emotion'], 'disgust')
 
-    def test_empty_text(self):
-        test_text = ""
+    def test_sadness_emotion(self):
+        test_text = "I am so sad about this"
         result = emotion_detector(test_text)
-        # Ensure that no emotion is detected for an empty string (can be handled as per the function behavior)
-        self.assertEqual(result, {'joy': '0.00%', 'anger': '0.00%', 'fear': '0.00%', 'sadness': '0.00%', 'disgust': '0.00%'})
+        # Check if the anger emotion is present and greater than a certain threshold
+        self.assertEqual(result['dominant_emotion'], 'sadness')
+
+    def test_fear_emotion(self):
+        test_text = "I am really afraid that this will happen"
+        result = emotion_detector(test_text)
+        # Check if the anger emotion is present and greater than a certain threshold
+        self.assertEqual(result['dominant_emotion'], 'fear')
 
 if __name__ == "__main__":
     unittest.main()
